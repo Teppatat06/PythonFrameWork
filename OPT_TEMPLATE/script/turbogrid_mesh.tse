@@ -1,0 +1,403 @@
+# Session file started:  2023/02/22 15:04:12
+# CFX-20.1
+
+
+COMMAND FILE:
+  TurboGrid Version=20.1
+END
+> update
+
+GEOMETRY:
+  Input Mode = Profile Points
+  CAD:
+    File Name =
+    Geometry Units = m
+    Specify CAD Geometry Units = Off
+  END
+  MACHINE DATA:
+    Rotation Axis Type = Principal Axis
+    Principal Axis = Z
+    Rotation Axis From = 0 , 0 , 0
+    Rotation Axis To = 1 , 0 , 0
+    Bladeset Count = PYTHON_VARIABLE
+    Override Upstream Geometry Options = Off
+  END
+  HUB:
+    Input Filename = PYTHON_PATH\
+OGV_hub.curve
+    Coordinate Frame Type = Cartesian
+    Input Angle Units = degree
+    Input Length Units = m
+  END
+  SHROUD:
+    Input Filename = PYTHON_PATH\
+OGV_shroud.curve
+    Coordinate Frame Type = Cartesian
+    Input Angle Units = degree
+    Input Length Units = m
+  END
+  BLADE SET:
+    BLADE: Blade 1
+      Blade Number = 0
+      Input Filename = PYTHON_PATH\
+out_profile_design_INDEX.curve
+      Coordinate Frame Type = Cartesian
+      Input Angle Units = degree
+      Input Length Units = m
+      Leading Edge Type = Single
+      Trailing Edge Type = Single
+    END
+  END
+  BLADE SET:
+    Blade List Surface Link = BLADE SET/BLADE:Blade 1
+    Blade List Tolerance Link = BLADE SET/BLADE:Blade 1
+    Blade List Edges Link = BLADE SET/BLADE:Blade 1
+    Blade List Tip Link = BLADE SET/BLADE:Blade 1
+    Blade List Extend Link = BLADE SET/BLADE:Blade 1
+  END
+
+END
+> update
+
+# Setting Layout Style to: No Split
+VIEWPORT MANAGER:
+  Viewport Layout = No Split
+END
+> update
+
+>setViewportView cmd=set, view=/VIEW:View 1, viewport=1
+> update
+
+GEOMETRY:
+  SEGMENT HIGHLIGHT:
+    Requested Block =
+    Requested Index = 0
+  END
+END
+> update
+
+GEOMETRY:
+  SEGMENT HIGHLIGHT:
+    Requested Block =
+    Requested Index = 0
+  END
+END
+> update
+
+GEOMETRY:
+  INLET:
+    Generate Intermediate Points = On
+    Hub Angle = 0.00300407 [deg]
+    Input Filename =
+    Opening Mode = Fully extend
+    Override Automatic Angles = Off
+    Parametric Hub Location = 1
+    Parametric Shroud Location = 0.0505052
+    Shroud Angle = 0.00278951 [deg]
+    Toggle Trim = Off
+    Trim AR Location Method = Set A
+    Trim Hub Position = 0.15 [m], 0.312501 [m]
+    Trim Intersection Point 1 = 0.15 [m], 0.312501 [m]
+    Trim Intersection Point 2 = 0.15 [m], 0.625 [m]
+    Trim Shroud Position = 0.15 [m], 0.625 [m]
+    Use Simple Conic Surface = Off
+    GEO POINT:Low Hub Point
+      Visibility = On
+    END
+    GEO POINT:Low Shroud Point
+      Visibility = On
+    END
+  END
+END
+> update
+
+GEOMETRY:
+  OUTLET:
+    Curve Representation = Piece-wise linear
+    Generate Intermediate Points = On
+    Hub Angle = -0.00356437 [deg]
+    Input Filename =
+    Meridional Splitter Filename =
+    Meridional Splitter Interface Hub Parametric Location = 0.5
+    Meridional Splitter Interface Shroud Parametric Location = 0.5
+    Opening Mode = Fully extend
+    Override Automatic Angles = Off
+    Parametric Hub Location = 0.0606059
+    Parametric Shroud Location = 1
+    Shroud Angle = -0 [deg]
+    Toggle Trim = Off
+    Trim AR Location Method = Set A
+    Trim Hub Position = 1.025 [m], 0.312501 [m]
+    Trim Intersection Point 1 = 1.025 [m], 0.312501 [m]
+    Trim Intersection Point 2 = 1.025 [m], 0.625 [m]
+    Trim Shroud Position = 1.025 [m], 0.625 [m]
+    Use Simple Conic Surface = Off
+    GEO POINT:Low Hub Point
+      Visibility = On
+    END
+    GEO POINT:Low Shroud Point
+      Visibility = On
+    END
+  END
+END
+> update
+
+MESH DATA:
+  ATM Five Star Vertex Mesh Size Factor = 1.0
+  ATM Proportional BL Factor Base = 2.5
+  ATM Proportional BL Factor Ratio = 1.14
+  ATM Spanwise To B2B Count Factor = 1.5
+  Between Boundary Layers Distribution Option = End Ratio
+  Between Boundary Layers End Ratio = 10
+  Between Boundary Layers Number Of Const Elements = 2
+  Between Boundary Layers Number Of Elements = 10
+  Boundary Layer Specification Method = Proportional
+  Global Size Factor = 1.2
+  HGrid At Inlet = on
+  HGrid At Outlet = on
+  HGrid in Parametric Space at Inlet = Off
+  HGrid in Parametric Space at Outlet = Off
+  Hub Boundary Layer Distribution Option = Element Count and Size
+  Hub Boundary Layer Expansion Rate = 1.15
+  Hub Boundary Layer Number Of Elements = 5
+  Hub Boundary Layer Offset = 0.1
+  Hub End Ratio = 200
+  Hub Tip Distribution Option = End Ratio
+  Hub Tip End Ratio = 15
+  Hub Tip Vertex Distance = 0.01 [m]
+  Hub Tip Vertex Offset = 0.1
+  Hub Tip Vertex YPlus = 1
+  Hub Vertex Distance = 0.05 [m]
+  Hub Vertex Offset = 0.05
+  Hub Vertex YPlus = 1
+  Inlet Default Growth Ratio = 1.2
+  Inlet Defining Parameter Type = Target Expansion Rate
+  Inlet Domain = Off
+  Inlet Max Aspect Ratio = 900
+  Inlet Multi Segment Enabled = On
+  Inlet Multi Segment First Element Factor = 0.1
+  LE Cutoff Edge Split Factor = 1.0
+  Meridional Splitter Boundary Layer Factor = 1.0
+  Mesh Size Specification Mode = Topology Block Edge Split
+  Number Of Constant Hub Tip Elements = 0
+  Number Of Constant Shroud Tip Elements = 0
+  Number Of Constant Spanwise Blade Elements = 0
+  Number Of Elements Per Block Edge = 2
+  Number Of Hub Tip Elements = 4
+  Number Of Inlet Elements = 5
+  Number Of Outlet Elements = 5
+  Number Of Shroud Tip Elements = 4
+  Number Of Spanwise Blade Elements = 2
+  Outlet Default Growth Ratio = 1.2
+  Outlet Defining Parameter Type = Target Expansion Rate
+  Outlet Domain = Off
+  Outlet Max Aspect Ratio = 900
+  Outlet Multi Segment Enabled = On
+  Outlet Multi Segment First Element Factor = 0.1
+  Override Inlet Distribution = Off
+  Override Outlet Distribution = Off
+  Reynolds Number = 1.0e6
+  Shroud Boundary Layer Distribution Option = Element Count and Size
+  Shroud Boundary Layer Expansion Rate = 1.15
+  Shroud Boundary Layer Number Of Elements = 5
+  Shroud Boundary Layer Offset = 0.1
+  Shroud Tip Distribution Option = End Ratio
+  Shroud Tip End Ratio = 15
+  Shroud Tip Vertex Distance = 0.01 [m]
+  Shroud Tip Vertex Offset = 0.1
+  Shroud Tip Vertex YPlus = 1
+  Shroud Vertex Distance = 0.05 [m]
+  Shroud Vertex Offset = 0.05
+  Shroud Vertex YPlus = 1
+  Spanwise Blade Distribution Option = End Ratio
+  TE Cutoff Edge Split Factor = 1.0
+  Target Maximum Expansion Rate = 1.14
+  Target Maximum Expansion Rate Enabled = On
+  Target Mesh Granularity = Coarse
+  Target Mesh Node Count = 50000
+  Vertex Offset Specification Mode = Absolute
+  BLADE MESH DATA: Blade 1
+    ATM Hub Tip Maximum Expansion Rate = 1.3
+    ATM Hub Tip Maximum Expansion Rate Enabled = Off
+    ATM Shroud Tip Maximum Expansion Rate = 1.3
+    ATM Shroud Tip Maximum Expansion Rate Enabled = Off
+    Cutoff Blade Edge Expansion Factor = 0.5
+    GGI Tip Hub Le Cut Off MeanLine Method = Auto
+    GGI Tip Hub Te Cut Off MeanLine Method = Auto
+    GGI Tip Shroud Le Cut Off MeanLine Method = Auto
+    GGI Tip Shroud Te Cut Off MeanLine Method = Auto
+    Number Of Elements Across Hub Tip = 0
+    Number Of Elements Across Shroud Tip = 0
+    Number Of Leading Edge Hub Tip Elements = 2
+    Number Of Leading Edge Shroud Tip Elements = 2
+    Number Of Trailing Edge Hub Tip Elements = 2
+    Number Of Trailing Edge Shroud Tip Elements = 2
+    Override Hub Tip Element Count Calculation = Off
+    Override Shroud Tip Element Count Calculation = Off
+  END
+  EDGE SPLIT CONTROL: Blade 1 Boundary Layer Control
+    Split Factor = 2.0
+    Target First Element Offset = 0.01 [m]
+    Target First Element YPlus = 1
+  END
+END
+MESH DATA:
+  Override Outlet Element Count Calculation = 0
+  Outlet Default Growth Ratio = 1.2
+  Outlet Multi Segment Enabled = On
+END
+MESH DATA:
+  Override Inlet Element Count Calculation = 0
+  Inlet Default Growth Ratio = 1.2
+  Inlet Multi Segment Enabled = On
+END
+TOPOLOGY SET:
+  Lock Down ATM Mesh Size = Off
+END
+> update
+
+MESH DATA:
+  ATM Five Star Vertex Mesh Size Factor = 1.0
+  ATM Proportional BL Factor Base = 2.5
+  ATM Proportional BL Factor Ratio = 1.14
+  ATM Spanwise To B2B Count Factor = 1.5
+  Between Boundary Layers Distribution Option = End Ratio
+  Between Boundary Layers End Ratio = 10
+  Between Boundary Layers Number Of Const Elements = 2
+  Between Boundary Layers Number Of Elements = 10
+  Boundary Layer Specification Method = Proportional
+  Global Size Factor = 1.2
+  HGrid At Inlet = on
+  HGrid At Outlet = on
+  HGrid in Parametric Space at Inlet = Off
+  HGrid in Parametric Space at Outlet = Off
+  Hub Boundary Layer Distribution Option = Element Count and Size
+  Hub Boundary Layer Expansion Rate = 1.15
+  Hub Boundary Layer Number Of Elements = 5
+  Hub Boundary Layer Offset = 0.1
+  Hub End Ratio = 200
+  Hub Tip Distribution Option = End Ratio
+  Hub Tip End Ratio = 15
+  Hub Tip Vertex Distance = 0.01 [m]
+  Hub Tip Vertex Offset = 0.1
+  Hub Tip Vertex YPlus = 1
+  Hub Vertex Distance = 0.05 [m]
+  Hub Vertex Offset = 0.05
+  Hub Vertex YPlus = 1
+  Inlet Default Growth Ratio = 1.2
+  Inlet Defining Parameter Type = Target Expansion Rate
+  Inlet Domain = Off
+  Inlet Max Aspect Ratio = 900
+  Inlet Multi Segment Enabled = On
+  Inlet Multi Segment First Element Factor = 0.1
+  LE Cutoff Edge Split Factor = 1.0
+  Meridional Splitter Boundary Layer Factor = 1.0
+  Mesh Size Specification Mode = Topology Block Edge Split
+  Number Of Constant Hub Tip Elements = 0
+  Number Of Constant Shroud Tip Elements = 0
+  Number Of Constant Spanwise Blade Elements = 0
+  Number Of Elements Per Block Edge = 2
+  Number Of Hub Tip Elements = 4
+  Number Of Inlet Elements = 5
+  Number Of Outlet Elements = 5
+  Number Of Shroud Tip Elements = 4
+  Number Of Spanwise Blade Elements = 2
+  Outlet Default Growth Ratio = 1.2
+  Outlet Defining Parameter Type = Target Expansion Rate
+  Outlet Domain = Off
+  Outlet Max Aspect Ratio = 900
+  Outlet Multi Segment Enabled = On
+  Outlet Multi Segment First Element Factor = 0.1
+  Override Inlet Distribution = Off
+  Override Outlet Distribution = Off
+  Reynolds Number = 1.0e6
+  Shroud Boundary Layer Distribution Option = Element Count and Size
+  Shroud Boundary Layer Expansion Rate = 1.15
+  Shroud Boundary Layer Number Of Elements = 5
+  Shroud Boundary Layer Offset = 0.1
+  Shroud Tip Distribution Option = End Ratio
+  Shroud Tip End Ratio = 15
+  Shroud Tip Vertex Distance = 0.01 [m]
+  Shroud Tip Vertex Offset = 0.1
+  Shroud Tip Vertex YPlus = 1
+  Shroud Vertex Distance = 0.05 [m]
+  Shroud Vertex Offset = 0.05
+  Shroud Vertex YPlus = 1
+  Spanwise Blade Distribution Option = End Ratio
+  TE Cutoff Edge Split Factor = 1.0
+  Target Maximum Expansion Rate = 1.14
+  Target Maximum Expansion Rate Enabled = On
+  Target Mesh Granularity = Coarse
+  Target Mesh Node Count = 50000
+  Vertex Offset Specification Mode = Absolute
+  BLADE MESH DATA: Blade 1
+    ATM Hub Tip Maximum Expansion Rate = 1.3
+    ATM Hub Tip Maximum Expansion Rate Enabled = Off
+    ATM Shroud Tip Maximum Expansion Rate = 1.3
+    ATM Shroud Tip Maximum Expansion Rate Enabled = Off
+    Cutoff Blade Edge Expansion Factor = 0.5
+    GGI Tip Hub Le Cut Off MeanLine Method = Auto
+    GGI Tip Hub Te Cut Off MeanLine Method = Auto
+    GGI Tip Shroud Le Cut Off MeanLine Method = Auto
+    GGI Tip Shroud Te Cut Off MeanLine Method = Auto
+    Number Of Elements Across Hub Tip = 0
+    Number Of Elements Across Shroud Tip = 0
+    Number Of Leading Edge Hub Tip Elements = 2
+    Number Of Leading Edge Shroud Tip Elements = 2
+    Number Of Trailing Edge Hub Tip Elements = 2
+    Number Of Trailing Edge Shroud Tip Elements = 2
+    Override Hub Tip Element Count Calculation = Off
+    Override Shroud Tip Element Count Calculation = Off
+  END
+  EDGE SPLIT CONTROL: Blade 1 Boundary Layer Control
+    Split Factor = 2.0
+    Target First Element Offset = 0.01 [m]
+    Target First Element YPlus = 1
+  END
+END
+MESH DATA:
+  Override Outlet Element Count Calculation = 0
+  Outlet Default Growth Ratio = 1.2
+  Outlet Multi Segment Enabled = On
+END
+MESH DATA:
+  Override Inlet Element Count Calculation = 0
+  Inlet Default Growth Ratio = 1.2
+  Inlet Multi Segment Enabled = On
+END
+TOPOLOGY SET:
+  Lock Down ATM Mesh Size = Off
+END
+> update
+
+> um mode=normal, object=/TOPOLOGY SET
+> update
+
+GEOMETRY:
+  SEGMENT HIGHLIGHT:
+    Requested Block =
+    Requested Index = 0
+  END
+END
+> update
+
+GEOMETRY:
+  SEGMENT HIGHLIGHT:
+    Requested Block =
+    Requested Index = 0
+  END
+END
+> update
+
+> forceupdate /MESH GENERATOR
+> um mode=update, object=/MESH GENERATOR
+> update
+
+> savemesh filename=PYTHON_SAVE_PATH\
+CFXPRE_INDEX.gtm,onedomain=true, single=Off, units=m, solver=cfx5
+> update
+
+> update
+
+# Session file stopped:  2023/02/22 15:08:37
+

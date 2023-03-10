@@ -1,0 +1,1100 @@
+# Session file started:  2023/03/02 13:24:57
+# CFX-20.1
+
+COMMAND FILE:
+  CFX Pre Version = 20.1
+END
+
+>load mode=new
+> update
+
+> gtmImport filename=E:/Pun/GV/OptV2/geometry/FAN_BLADE.gtm, type=GTM, units=m, \
+nameStrategy= Assembly
+> update
+
+>gtmAction op=renameRegion,Passage,FAN Passage
+
+>gtmAction op=renameRegion,BLADE,FAN BLADE
+
+>gtmAction op=renameRegion,HUB,FAN HUB
+
+>gtmAction op=renameRegion,INFLOW,FAN INLET
+
+>gtmAction op=renameRegion,OUTFLOW,FAN OUTLET
+
+>gtmAction op=renameRegion,PER1,FAN PER1
+
+>gtmAction op=renameRegion,PER2,FAN PER2
+
+>gtmAction op=renameRegion,SHROUD,FAN SHROUD
+
+>gtmAction op=renameRegion,SHROUD TIP GGI SIDE 1,FAN SHROUD TIP GGI SIDE 1
+
+>gtmAction op=renameRegion,SHROUD TIP GGI SIDE 2,FAN SHROUD TIP GGI SIDE 2
+
+>gtmAction op=renameRegion,BLD GEO HIGH,FAN BLD GEO HIGH
+
+>gtmAction op=renameRegion,BLD GEO LOW,FAN BLD GEO LOW
+
+>gtmAction op=renameRegion,BLD HIGH,FAN BLD HIGH
+
+>gtmAction op=renameRegion,BLD LOW,FAN BLD LOW
+
+>gtmAction op=renameRegion,Passage Main,FAN Passage Main
+> update
+
+>gtmAction op=deleteComposite, FAN Passage
+>gtmAction op=createComposite,FAN Passage,Union,FAN Passage Main
+> update
+
+> gtmImport filename=E:/Pun/GV/OptV2/tg/CFXPRE_18.gtm, type=GTM, units=m, \
+nameStrategy= Assembly
+> update
+
+MESH TRANSFORMATION:
+  Angle End = 0 , 0 , 0
+  Angle Start = 0 , 0 , 0
+  Delete Original = Off
+  Glue Copied = On
+  Glue Reflected = On
+  Glue Strategy = Location And Transformed Only
+  Nonuniform Scale = 1 , 1 , 1
+  Normal = 0 , 0 , 0
+  Number of Copies = 1
+  Option = Reflection
+  Passages in 360 = 1
+  Passages per Mesh = 1
+  Passages to Model = 1
+  Point = 0 , 0 , 0
+  Point 1 = 0 , 0 , 0
+  Point 2 = 0 , 0 , 0
+  Point 3 = 0 , 0 , 0
+  Preserve Assembly Name Strategy = Existing
+  Principal Axis = Z
+  Reflection Method = Original (No Copy)
+  Reflection Option = XY Plane
+  Rotation Angle = 0.0 [degree]
+  Rotation Angle Option = Specified
+  Rotation Axis Begin = 0 , 0 , 0
+  Rotation Axis End = 0 , 0 , 0
+  Rotation Option = Principal Axis
+  Scale Method = Original (No Copy)
+  Scale Option = Uniform
+  Scale Origin = 0 , 0 , 0
+  Target Location = Passage Main
+  Theta Offset = 0.0 [degree]
+  Transform Targets Independently = Off
+  Translation Deltas = 0 , 0 , 0
+  Translation Option = Deltas
+  Translation Root = 0 , 0 , 0
+  Translation Tip = 0 , 0 , 0
+  Uniform Scale = 1.0
+  Use Coord Frame = Off
+  Use Multiple Copy = Off
+  X Pos = 0.0
+  Y Pos = 0.0
+  Z Pos = 0.0
+END
+> update
+>gtmTransform Passage Main
+> update
+>gtmAction op=renameRegion,Passage,IGV Passage
+
+>gtmAction op=renameRegion,BLADE,IGV BLADE
+
+>gtmAction op=renameRegion,HUB,IGV HUB
+
+>gtmAction op=renameRegion,INFLOW,IGV OUTLET
+
+>gtmAction op=renameRegion,OUTFLOW,IGV INLET
+
+>gtmAction op=renameRegion,PER1,IGV PER1
+
+>gtmAction op=renameRegion,PER2,IGV PER2
+
+>gtmAction op=renameRegion,SHROUD,IGV SHROUD
+
+>gtmAction op=renameRegion,BLD GEO HIGH,IGV BLD GEO HIGH
+
+>gtmAction op=renameRegion,BLD GEO LOW,IGV BLD GEO LOW
+
+>gtmAction op=renameRegion,BLD HIGH,IGV BLD HIGH
+
+>gtmAction op=renameRegion,BLD LOW,IGV BLD LOW
+
+>gtmAction op=renameRegion,Passage Main,IGV Passage Main
+> update
+
+>gtmAction op=deleteComposite, IGV Passage
+>gtmAction op=createComposite,IGV Passage,Union,IGV Passage Main
+> update
+
+> gtmImport filename=E:/Pun/GV/OptV2/tg/CFXPRE_18.gtm, type=GTM, units=m, \
+nameStrategy= Assembly
+> update
+
+>gtmAction op=renameRegion,Passage,OGV Passage
+
+>gtmAction op=renameRegion,BLADE,OGV BLADE
+
+>gtmAction op=renameRegion,HUB,OGV HUB
+
+>gtmAction op=renameRegion,INFLOW,OGV INLET
+
+>gtmAction op=renameRegion,OUTFLOW,OGV OUTLET
+
+>gtmAction op=renameRegion,PER1,OGV PER1
+
+>gtmAction op=renameRegion,PER2,OGV PER2
+
+>gtmAction op=renameRegion,SHROUD,OGV SHROUD
+
+>gtmAction op=renameRegion,BLD GEO HIGH,OGV BLD GEO HIGH
+
+>gtmAction op=renameRegion,BLD GEO LOW,OGV BLD GEO LOW
+
+>gtmAction op=renameRegion,BLD HIGH,OGV BLD HIGH
+
+>gtmAction op=renameRegion,BLD LOW,OGV BLD LOW
+
+>gtmAction op=renameRegion,Passage Main,OGV Passage Main
+> update
+
+>gtmAction op=deleteComposite, OGV Passage
+>gtmAction op=createComposite,OGV Passage,Union,OGV Passage Main
+> update
+
+> gtmImport filename=E:/Pun/GV/OptV2/ductIn/projectICEM5in.cfx5, type=Generic, \
+units=m, genOpt= -n, nameStrategy= Assembly
+> update
+
+>gtmAction op=renameRegion,FLUID,IT Passage
+
+>gtmAction op=renameRegion,DUCT_FLOW,IT INLET
+
+>gtmAction op=renameRegion,FAN_FLOW,IT OUTLET
+
+>gtmAction op=renameRegion,HUB,IT HUB
+
+>gtmAction op=renameRegion,P1,IT PER1
+
+>gtmAction op=renameRegion,P2,IT PER2
+
+>gtmAction op=renameRegion,SHROUD,IT SHROUD
+> update
+
+> gtmImport filename=E:/Pun/GV/OptV2/ductOut/projectICEM5out.cfx5, type=Generic, \
+units=m, genOpt= -n, nameStrategy= Assembly
+> update
+
+>gtmAction op=renameRegion,FLUID,OT Passage
+
+>gtmAction op=renameRegion,DUCT_FLOW,OT OUTLET
+
+>gtmAction op=renameRegion,FAN_FLOW,OT INLET
+
+>gtmAction op=renameRegion,HUB,OT HUB
+
+>gtmAction op=renameRegion,P1,OT PER1
+
+>gtmAction op=renameRegion,P2,OT PER2
+
+>gtmAction op=renameRegion,SHROUD,OT SHROUD
+> update
+
+LIBRARY:
+  CEL:
+    EXPRESSIONS:
+	  Qinput = 19 [m^3 s^-1]
+      Number IGV = 5
+      Number IT = 5
+      Number OGV = 5
+      Number OT = 5
+      Number RPM = 1450 [rev min^-1] / 1 [rad]
+      Number blade = 6
+      PS = PS 6 OT outlet - PT 1 IT inlet
+      PS 1 IT inlet = massFlowAve(Pressure)@IT INLET
+      PS 2 IT IGV = massFlowAve(Pressure)@IT OUTLET
+      PS 3 IGV R1 = massFlowAve(Pressure)@IGV OUTLET
+      PS 4 R1 OGV = massFlowAve(Pressure)@OGV INLET
+      PS 5 OGV OT = massFlowAve(Pressure)@OGV OUTLET
+      PS 6 OT outlet = massFlowAve(Pressure)@OT OUTLET
+      PT = PT 6 OT outlet - PT 1 IT inlet
+      PT 1 IT inlet = massFlowAve(Total Pressure)@IT INLET
+      PT 2 IT IGV = massFlowAve(Total Pressure)@IT OUTLET
+      PT 3 IGV R1 = massFlowAve(Total Pressure)@IGV OUTLET
+      PT 4 R1 OGV = massFlowAve(Total Pressure)@OGV INLET
+      PT 5 OGV OT = massFlowAve(Total Pressure)@OGV OUTLET
+      PT 6 OT outlet = massFlowAve(Total Pressure)@OT OUTLET
+      Power = abs(torque_z()@FAN BLADE + torque_z()@FAN HUB)*Number \
+        blade*Number RPM
+      QFlow IT = massFlow()@IT INLET/areaAve(Density)@IT INLET*Number IT
+      air density = 1.2 [kg / m^3]
+      myphysical time scale = 1.3/Number RPM
+	  Eff total = (PT *QFlow IT) /Power
+      Mdot = Qinput*1.2 [kg m^-3]
+      pitchIT = 360 [degree]/Number IT
+      pitchOT = 360 [degree]/Number OT
+      pitchIGV = 360 [degree]/Number IGV
+      pitchOGV = 360 [degree]/Number OGV
+      pitchR1 = 360 [degree]/Number blade
+	  PV=0.5*air density *(massFlowAve(Velocity w)@REGION:IT INLET)^2
+	  PT real=PS+PV
+	  Eff real=(PT real *QFlow IT) / Power
+	  delQinout = QFlow IT - Qinput
+    END
+  END
+END
+> update
+
+FLOW: Flow Analysis 1
+  &replace   SOLVER CONTROL:
+    Turbulence Numerics = First Order
+    ADVECTION SCHEME:
+      Option = High Resolution
+    END # ADVECTION SCHEME:
+    CONVERGENCE CONTROL:
+      Maximum Number of Iterations = 1000
+      Minimum Number of Iterations = 200
+      Physical Timescale = myphysical time scale
+      Timescale Control = Physical Timescale
+    END # CONVERGENCE CONTROL:
+    CONVERGENCE CRITERIA:
+      Residual Target = 0.000001
+      Residual Type = RMS
+    END # CONVERGENCE CRITERIA:
+    DYNAMIC MODEL CONTROL:
+      Global Dynamic Model Control = On
+    END # DYNAMIC MODEL CONTROL:
+    INTERRUPT CONTROL:
+      Option = Any Interrupt
+      CONVERGENCE CONDITIONS:
+        Option = Default Conditions
+      END # CONVERGENCE CONDITIONS:
+    END # INTERRUPT CONTROL:
+  END # SOLVER CONTROL:
+END # FLOW:Flow Analysis 1
+> update
+
+FLOW: Flow Analysis 1
+  &replace   OUTPUT CONTROL:
+    MONITOR OBJECTS:
+      MONITOR BALANCES:
+        Option = Full
+      END # MONITOR BALANCES:
+      MONITOR FORCES:
+        Option = Full
+      END # MONITOR FORCES:
+      MONITOR PARTICLES:
+        Option = Full
+      END # MONITOR PARTICLES:
+      MONITOR POINT: Ps
+        Coord Frame = Coord 0
+        Expression Value = PS
+        Option = Expression
+      END # MONITOR POINT:Ps
+      MONITOR POINT: eff_real
+        Coord Frame = Coord 0
+        Expression Value = Eff real
+        Option = Expression
+      END # MONITOR POINT:eff_real
+	  MONITOR POINT: delQ
+        Coord Frame = Coord 0
+        Expression Value = delQinout
+        Option = Expression
+      END # MONITOR POINT:delQ
+      MONITOR RESIDUALS:
+        Option = Full
+      END # MONITOR RESIDUALS:
+      MONITOR TOTALS:
+        Option = Full
+      END # MONITOR TOTALS:
+    END # MONITOR OBJECTS:
+    RESULTS:
+      File Compression Level = Default
+      Option = Standard
+    END # RESULTS:
+  END # OUTPUT CONTROL:
+END # FLOW:Flow Analysis 1
+
+> update
+
+#### END-TURBO SETTING
+>delete /FLOW:Flow Analysis 1/DOMAIN:Default Domain,/FLOW:Flow Analysis 1/\
+ANALYSIS TYPE,/FLOW:Flow Analysis 1/OUTPUT CONTROL/MONITOR OBJECTS/EFFICIENCY \
+OUTPUT,/FLOW:Flow Analysis 1/OUTPUT CONTROL/EFFICIENCY OUTPUT,/TURBO POST DATA,/\
+FLOW:Flow Analysis 1/TRANSIENT BLADE ROW MODELS,/FLOW:Flow Analysis 1/OUTPUT \
+CONTROL/TRANSIENT BLADE ROW OUTPUT
+FLOW: Flow Analysis 1
+  &replace OUTPUT CONTROL:
+    MONITOR OBJECTS:
+      MONITOR BALANCES:
+        Option = Full
+      END
+      MONITOR FORCES:
+        Option = Full
+      END
+      MONITOR PARTICLES:
+        Option = Full
+      END
+      MONITOR POINT: Ps
+        Coord Frame = Coord 0
+        Expression Value = PS
+        Option = Expression
+      END
+      MONITOR POINT: delQ
+        Coord Frame = Coord 0
+        Expression Value = delQinout
+        Option = Expression
+      END
+      MONITOR POINT: eff_real
+        Coord Frame = Coord 0
+        Expression Value = Eff real
+        Option = Expression
+      END
+      MONITOR RESIDUALS:
+        Option = Full
+      END
+      MONITOR TOTALS:
+        Option = Full
+      END
+    END
+    RESULTS:
+      File Compression Level = Default
+      Option = Standard
+    END
+  END
+  &replace SOLUTION UNITS:
+    Angle Units = [rad]
+    Length Units = [m]
+    Mass Units = [kg]
+    Solid Angle Units = [sr]
+    Temperature Units = [K]
+    Time Units = [s]
+  END
+  &replace SOLVER CONTROL:
+    Turbulence Numerics = First Order
+    ADVECTION SCHEME:
+      Option = High Resolution
+    END
+    CONVERGENCE CONTROL:
+      Maximum Number of Iterations = 1000
+      Minimum Number of Iterations = 200
+      Physical Timescale = myphysical time scale
+      Timescale Control = Physical Timescale
+    END
+    CONVERGENCE CRITERIA:
+      Residual Target = 0.000001
+      Residual Type = RMS
+    END
+    DYNAMIC MODEL CONTROL:
+      Global Dynamic Model Control = On
+    END
+    INTERRUPT CONTROL:
+      Option = Any Interrupt
+      CONVERGENCE CONDITIONS:
+        Option = Default Conditions
+      END
+    END
+  END
+  &replace ANALYSIS TYPE:
+    Option = Steady State
+    EXTERNAL SOLVER COUPLING:
+      Option = None
+    END
+  END
+  &replace DOMAIN: R1
+    Coord Frame = Coord 0
+    Domain Type = Fluid
+    Location = FAN Passage Main
+    Number of Passages in 360 = 6
+    Number of Passages in Component = 1
+    DOMAIN MODELS:
+      BUOYANCY MODEL:
+        Option = Non Buoyant
+      END
+      DOMAIN MOTION:
+        Alternate Rotation Model = true
+        Angular Velocity = -Number RPM
+        Option = Rotating
+        AXIS DEFINITION:
+          Option = Coordinate Axis
+          Rotation Axis = Coord 0.3
+        END
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+      REFERENCE PRESSURE:
+        Reference Pressure = 1 [atm]
+      END
+    END
+    FLUID DEFINITION: Fluid 1
+      Material = Air at 25 C
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Fluid
+      END
+    END
+    FLUID MODELS:
+      COMBUSTION MODEL:
+        Option = None
+      END
+      HEAT TRANSFER MODEL:
+        Option = None
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+      TURBULENCE MODEL:
+        Option = SST
+      END
+      TURBULENT WALL FUNCTIONS:
+        Option = Automatic
+      END
+    END
+    BOUNDARY: R1 Blade
+      Boundary Type = WALL
+      Create Other Side = Off
+      Frame Type = Rotating
+      Interface Boundary = Off
+      Location = FAN BLADE
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: R1 Hub
+      Boundary Type = WALL
+      Create Other Side = Off
+      Frame Type = Rotating
+      Interface Boundary = Off
+      Location = FAN HUB
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: R1 Shroud
+      Boundary Type = WALL
+      Create Other Side = Off
+      Frame Type = Rotating
+      Interface Boundary = Off
+      Location = FAN SHROUD
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+          WALL VELOCITY:
+            Option = Counter Rotating Wall
+          END
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+  END
+  &replace DOMAIN: IT
+    Coord Frame = Coord 0
+    Domain Type = Fluid
+    Location = IT Passage
+    Number of Passages in 360 = 5
+    Number of Passages in Component = 1
+    DOMAIN MODELS:
+      BUOYANCY MODEL:
+        Option = Non Buoyant
+      END
+      DOMAIN MOTION:
+        Option = Stationary
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+      REFERENCE PRESSURE:
+        Reference Pressure = 1 [atm]
+      END
+    END
+    FLUID DEFINITION: Fluid 1
+      Material = Air at 25 C
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Fluid
+      END
+    END
+    FLUID MODELS:
+      COMBUSTION MODEL:
+        Option = None
+      END
+      HEAT TRANSFER MODEL:
+        Option = None
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+      TURBULENCE MODEL:
+        Option = SST
+      END
+      TURBULENT WALL FUNCTIONS:
+        Option = Automatic
+      END
+    END
+    BOUNDARY: IT Hub
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = IT HUB
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: IT Inlet
+      Boundary Type = INLET
+      Interface Boundary = Off
+      Location = IT INLET
+      BOUNDARY CONDITIONS:
+        FLOW DIRECTION:
+          Option = Normal to Boundary Condition
+        END
+        FLOW REGIME:
+          Option = Subsonic
+        END
+        MASS AND MOMENTUM:
+          Option = Total Pressure
+          Relative Pressure = 0 [atm]
+        END
+        TURBULENCE:
+          Option = Medium Intensity and Eddy Viscosity Ratio
+        END
+      END
+    END
+    BOUNDARY: IT Shroud
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = IT SHROUD
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+  END
+  &replace DOMAIN: IGV
+    Coord Frame = Coord 0
+    Domain Type = Fluid
+    Location = IGV Passage Main
+    Number of Passages in 360 = 5
+    Number of Passages in Component = 1
+    DOMAIN MODELS:
+      BUOYANCY MODEL:
+        Option = Non Buoyant
+      END
+      DOMAIN MOTION:
+        Option = Stationary
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+      REFERENCE PRESSURE:
+        Reference Pressure = 1 [atm]
+      END
+    END
+    FLUID DEFINITION: Fluid 1
+      Material = Air at 25 C
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Fluid
+      END
+    END
+    FLUID MODELS:
+      COMBUSTION MODEL:
+        Option = None
+      END
+      HEAT TRANSFER MODEL:
+        Option = None
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+      TURBULENCE MODEL:
+        Option = SST
+      END
+      TURBULENT WALL FUNCTIONS:
+        Option = Automatic
+      END
+    END
+    BOUNDARY: IGV Blade
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = IGV BLADE
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: IGV Hub
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = IGV HUB
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: IGV Shroud
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = IGV SHROUD
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+  END
+  &replace DOMAIN: OGV
+    Coord Frame = Coord 0
+    Domain Type = Fluid
+    Location = OGV Passage Main
+    Number of Passages in 360 = 5
+    Number of Passages in Component = 1
+    DOMAIN MODELS:
+      BUOYANCY MODEL:
+        Option = Non Buoyant
+      END
+      DOMAIN MOTION:
+        Option = Stationary
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+      REFERENCE PRESSURE:
+        Reference Pressure = 1 [atm]
+      END
+    END
+    FLUID DEFINITION: Fluid 1
+      Material = Air at 25 C
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Fluid
+      END
+    END
+    FLUID MODELS:
+      COMBUSTION MODEL:
+        Option = None
+      END
+      HEAT TRANSFER MODEL:
+        Option = None
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+      TURBULENCE MODEL:
+        Option = SST
+      END
+      TURBULENT WALL FUNCTIONS:
+        Option = Automatic
+      END
+    END
+    BOUNDARY: OGV Blade
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = OGV BLADE
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: OGV Hub
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = OGV HUB
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: OGV Shroud
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = OGV SHROUD
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+  END
+  &replace DOMAIN: OT
+    Coord Frame = Coord 0
+    Domain Type = Fluid
+    Location = OT Passage
+    Number of Passages in 360 = 5
+    Number of Passages in Component = 1
+    DOMAIN MODELS:
+      BUOYANCY MODEL:
+        Option = Non Buoyant
+      END
+      DOMAIN MOTION:
+        Option = Stationary
+      END
+      MESH DEFORMATION:
+        Option = None
+      END
+      REFERENCE PRESSURE:
+        Reference Pressure = 1 [atm]
+      END
+    END
+    FLUID DEFINITION: Fluid 1
+      Material = Air at 25 C
+      Option = Material Library
+      MORPHOLOGY:
+        Option = Continuous Fluid
+      END
+    END
+    FLUID MODELS:
+      COMBUSTION MODEL:
+        Option = None
+      END
+      HEAT TRANSFER MODEL:
+        Option = None
+      END
+      THERMAL RADIATION MODEL:
+        Option = None
+      END
+      TURBULENCE MODEL:
+        Option = SST
+      END
+      TURBULENT WALL FUNCTIONS:
+        Option = Automatic
+      END
+    END
+    BOUNDARY: OT Hub
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = OT HUB
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+    BOUNDARY: OT Outlet
+      Boundary Type = OUTLET
+      Interface Boundary = Off
+      Location = OT OUTLET
+      BOUNDARY CONDITIONS:
+        FLOW REGIME:
+          Option = Subsonic
+        END
+        MASS AND MOMENTUM:
+          Mass Flow Rate = Mdot
+          Mass Flow Rate Area = Total for All Sectors
+          Option = Mass Flow Rate
+        END
+      END
+    END
+    BOUNDARY: OT Shroud
+      Boundary Type = WALL
+      Create Other Side = Off
+      Interface Boundary = Off
+      Location = OT SHROUD
+      BOUNDARY CONDITIONS:
+        MASS AND MOMENTUM:
+          Option = No Slip Wall
+        END
+        WALL ROUGHNESS:
+          Option = Smooth Wall
+        END
+      END
+    END
+  END
+  ### DOMAIN INTERFACE
+  &replace DOMAIN INTERFACE: IGV to IGV Periodic 1
+    Filter Domain List1 = IGV
+    Filter Domain List2 = IGV
+    Interface Region List1 = IGV PER1
+    Interface Region List2 = IGV PER2
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = Rotational Periodicity
+      AXIS DEFINITION:
+        Option = Coordinate Axis
+        Rotation Axis = Coord 0.3
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  &replace DOMAIN INTERFACE: IT to IT Periodic 1
+    Filter Domain List1 = IT
+    Filter Domain List2 = IT
+    Interface Region List1 = IT PER1
+    Interface Region List2 = IT PER2
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = Rotational Periodicity
+      AXIS DEFINITION:
+        Option = Coordinate Axis
+        Rotation Axis = Coord 0.3
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  &replace DOMAIN INTERFACE: OGV to OGV Periodic 1
+    Filter Domain List1 = OGV
+    Filter Domain List2 = OGV
+    Interface Region List1 = OGV PER1
+    Interface Region List2 = OGV PER2
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = Rotational Periodicity
+      AXIS DEFINITION:
+        Option = Coordinate Axis
+        Rotation Axis = Coord 0.3
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  &replace DOMAIN INTERFACE: OT to OT Periodic 1
+    Filter Domain List1 = OT
+    Filter Domain List2 = OT
+    Interface Region List1 = OT PER1
+    Interface Region List2 = OT PER2
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = Rotational Periodicity
+      AXIS DEFINITION:
+        Option = Coordinate Axis
+        Rotation Axis = Coord 0.3
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  &replace DOMAIN INTERFACE: R1 to R1 Internal
+    Filter Domain List1 = -- All Domains --
+    Filter Domain List2 = -- All Domains --
+    Interface Region List1 = SHROUD TIP GGI SIDE 1 Passage
+    Interface Region List2 = SHROUD TIP GGI SIDE 2 Passage
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = None
+      END
+      MASS AND MOMENTUM:
+        Option = Conservative Interface Flux
+        MOMENTUM INTERFACE MODEL:
+          Option = None
+        END
+      END
+      PITCH CHANGE:
+        Option = None
+      END
+    END
+    MESH CONNECTION:
+      Option = GGI
+    END
+  END
+  &replace DOMAIN INTERFACE: R1 to R1 Periodic 1
+    Filter Domain List1 = R1
+    Filter Domain List2 = R1
+    Interface Region List1 = FAN PER1
+    Interface Region List2 = FAN PER2
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = Rotational Periodicity
+      AXIS DEFINITION:
+        Option = Coordinate Axis
+        Rotation Axis = Coord 0.3
+      END
+    END
+    MESH CONNECTION:
+      Option = Automatic
+    END
+  END
+  &replace DOMAIN INTERFACE: IT to IGV
+    Filter Domain List1 = -- All Domains --
+    Filter Domain List2 = -- All Domains --
+    Interface Region List1 = IT OUTLET
+    Interface Region List2 = IGV INLET
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = Stage
+        DOWNSTREAM VELOCITY CONSTRAINT:
+          Frame Type = Rotating
+          Option = Constant Total Pressure
+        END
+      END
+      PITCH CHANGE:
+        Option = Specified Pitch Angles
+        Pitch Angle Side1 = pitchIT
+        Pitch Angle Side2 = pitchIGV
+        AXIS DEFINITION:
+          Option = Coordinate Axis
+          Rotation Axis = Coord 0.3
+        END
+      END
+    END
+    MESH CONNECTION:
+      Option = GGI
+    END
+  END
+  &replace DOMAIN INTERFACE: IGV to R1
+    Filter Domain List1 = -- All Domains --
+    Filter Domain List2 = -- All Domains --
+    Interface Region List1 = IGV OUTLET
+    Interface Region List2 = FAN INLET
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = Frozen Rotor
+      END
+      MASS AND MOMENTUM:
+        Option = Conservative Interface Flux
+        MOMENTUM INTERFACE MODEL:
+          Option = None
+        END
+      END
+      PITCH CHANGE:
+        Option = Specified Pitch Angles
+        Pitch Angle Side1 = pitchIGV
+        Pitch Angle Side2 = pitchR1
+      END
+    END
+    MESH CONNECTION:
+      Option = GGI
+    END
+  END
+  &replace DOMAIN INTERFACE: R1 to OGV
+    Filter Domain List1 = -- All Domains --
+    Filter Domain List2 = -- All Domains --
+    Interface Region List1 = FAN OUTLET
+    Interface Region List2 = OGV INLET
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = Frozen Rotor
+      END
+      MASS AND MOMENTUM:
+        Option = Conservative Interface Flux
+        MOMENTUM INTERFACE MODEL:
+          Option = None
+        END
+      END
+      PITCH CHANGE:
+        Option = Specified Pitch Angles
+        Pitch Angle Side1 = pitchR1
+        Pitch Angle Side2 = pitchOGV
+      END
+    END
+    MESH CONNECTION:
+      Option = GGI
+    END
+  END
+  &replace DOMAIN INTERFACE: OGV to OT
+    Filter Domain List1 = -- All Domains --
+    Filter Domain List2 = -- All Domains --
+    Interface Region List1 = OGV OUTLET
+    Interface Region List2 = OT INLET
+    Interface Type = Fluid Fluid
+    INTERFACE MODELS:
+      Option = General Connection
+      FRAME CHANGE:
+        Option = Stage
+        DOWNSTREAM VELOCITY CONSTRAINT:
+          Frame Type = Rotating
+          Option = Constant Total Pressure
+        END
+      END
+      PITCH CHANGE:
+        Option = Specified Pitch Angles
+        Pitch Angle Side1 = pitchOGV
+        Pitch Angle Side2 = pitchOT
+        AXIS DEFINITION:
+          Option = Coordinate Axis
+          Rotation Axis = Coord 0.3
+        END
+      END
+    END
+    MESH CONNECTION:
+      Option = GGI
+    END
+  END
+END
+
+>physicsupdate
+
+
+>delete /AXIS:TurboPre
+> update
+
+>delete /ROTATION MARKER:Marker R1
+> update
+
+
+>writeCaseFile filename=E:/Pun/GV/OptV2/cfxpre/cfxsolveinput01.def,operation=\
+write def file
+>quit
+> update
+
+#### END-TURBO SETTING

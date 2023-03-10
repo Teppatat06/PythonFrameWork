@@ -1,0 +1,713 @@
+set FAN_DIAMETER 1.25
+set HUB_RADIUS 0.3125
+set SHROUD_RADIUS 0.625
+set DUCT_RATIO 2.5
+set N_BLADE PYTHON_VARIABLE
+set OFFSET 1.025
+set Tol 0.001
+set GRID_ONE_DEGREE 0.5
+set DUCT_LENGTH [expr $DUCT_RATIO*$FAN_DIAMETER]
+set angle [expr 360/$N_BLADE]
+set x0 0
+set y0 0
+set z0 $OFFSET
+set x1 0
+set y1 0
+set z1 [expr $OFFSET+($HUB_RADIUS)]
+set x2 0
+set y2 0
+set z2 [expr $OFFSET+($DUCT_LENGTH)]
+set x3 $SHROUD_RADIUS
+set y3 0
+set z3 [expr $OFFSET+($DUCT_LENGTH)]
+set x4 $SHROUD_RADIUS
+set y4 0
+set z4 [expr $OFFSET+($HUB_RADIUS)]
+set x5 $SHROUD_RADIUS
+set y5 0
+set z5 $OFFSET
+set x6 $HUB_RADIUS
+set y6 0
+set z6 $OFFSET
+set N_Azimuthal [expr ($angle*$GRID_ONE_DEGREE)/1]
+ic_set_global geo_cad $Tol toler
+ic_undo_group_begin
+ic_geo_new_family GEOM
+ic_boco_set_part_color GEOM
+ic_empty_tetin
+ic_point {} GEOM pnt.00 $x0,$y0,$z0
+ic_undo_group_end
+ic_undo_group_begin
+ic_point {} GEOM pnt.01 $x1,$y1,$z1
+ic_undo_group_end
+ic_undo_group_begin
+ic_point {} GEOM pnt.02 $x2,$y2,$z2
+ic_undo_group_end
+ic_undo_group_begin
+ic_point {} GEOM pnt.03 $x3,$y3,$z3
+ic_undo_group_end
+ic_undo_group_begin
+ic_point {} GEOM pnt.04 $x5,$y5,$z5
+ic_undo_group_end
+ic_undo_group_begin
+ic_point {} GEOM pnt.05 $x6,$y6,$z6
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve point GEOM crv.00 {pnt.01 pnt.02}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve point GEOM crv.01 {pnt.02 pnt.03}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve point GEOM crv.02 {pnt.03 pnt.04}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve point GEOM crv.03 {pnt.04 pnt.05}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve arc_ctr_rad GEOM crv.04 {pnt.00 pnt.05 pnt.01 $HUB_RADIUS 0 90}
+ic_undo_group_end
+ic_undo_group_begin
+ic_undo_group_begin
+ic_point crv_par GEOM pnt.18 {crv.04 0.5}
+ic_undo_group_end
+ic_set_global geo_cad 0.001 toler
+ic_undo_group_begin
+ic_curve split GEOM crv.23 {crv.04 pnt.18}
+ic_undo_group_end
+ic_set_global geo_cad 0.001 toler
+ic_undo_group_begin
+ic_point projcurv GEOM pnt.20 {pnt.18 crv.02}
+ic_undo_group_end
+ic_undo_group_begin
+ic_point projcurv GEOM pnt.21 {pnt.18 crv.01}
+ic_undo_group_end
+ic_set_global geo_cad 0.001 toler
+ic_undo_group_begin
+ic_delete_geometry curve names crv.24 0
+ic_curve point GEOM crv.24 {pnt.18 pnt.20}
+ic_undo_group_end
+ic_undo_group_begin
+ic_delete_geometry curve names crv.25 0
+ic_curve point GEOM crv.25 {pnt.18 pnt.21}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve split GEOM crv.26 {crv.02 pnt.20}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve split GEOM crv.27 {crv.01 pnt.21}
+ic_undo_group_end
+ic_set_global geo_cad 0.001 toler
+ic_set_global geo_cad 0.001 toler
+ic_set_global geo_cad 0.001 toler
+ic_undo_group_begin
+ic_geo_cre_srf_rev GEOM srf.02 {crv.23 crv.04 crv.03 crv.26 crv.02 crv.27 crv.01 crv.25 crv.24} pnt.02 {0 0 1} [expr -$angle/2] [expr $angle/2] c 1
+ic_set_global geo_cad 0.001 toler
+ic_set_dormant_pickable point 0 {}
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_set_global geo_cad 0.001 toler
+ic_set_global geo_cad 0.001 toler
+ic_set_global geo_cad 0.001 toler
+ic_undo_group_begin
+ic_geo_new_family P1
+ic_boco_set_part_color P1
+ic_surface 2-4crvs P1 srf.03 {0.001 {crv.00 srf.02e13 srf.02.1e16 srf.02.2e20 srf.02.3e24 srf.02.4e28 srf.02.5e32 srf.02.6e36}}
+ic_set_global geo_cad 0.003 toler
+ic_set_dormant_pickable point 0 {}
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_new_family P2
+ic_boco_set_part_color P2
+ic_surface 2-4crvs P2 srf.04 {0.001 {crv.00 srf.02.6e38 srf.02.5e34 srf.02.4e30 srf.02.3e26 srf.02.2e22 srf.02.1e18 srf.02e14}}
+ic_set_global geo_cad 0.003 toler
+ic_set_dormant_pickable point 0 {}
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_set_part surface {srf.02.5 srf.02.6} DUCT_FLOW 0
+ic_delete_empty_parts
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_set_part surface srf.02.2 FAN_FLOW 0
+ic_delete_empty_parts
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_set_part surface {srf.02 srf.02.1} HUB 0
+ic_delete_empty_parts
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_set_part surface {srf.02.3 srf.02.4} SHROUD 0
+ic_delete_empty_parts
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_new_family FLUID
+ic_boco_set_part_color FLUID
+ic_hex_initialize_blocking {} FLUID 0 101
+ic_hex_unblank_blocks
+ic_hex_multi_grid_level 0
+ic_hex_projection_limit 0
+ic_hex_default_bunching_law default 2.0
+ic_hex_floating_grid off
+ic_hex_transfinite_degree 1
+ic_hex_unstruct_face_type one_tri
+ic_hex_set_unstruct_face_method uniform_quad
+ic_hex_set_n_tetra_smoothing_steps 20
+ic_hex_error_messages off_minor
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_undo_major_start split_grid
+ic_hex_split_grid 41 42 0.805314 m GEOM P1 P2 DUCT_FLOW FAN_FLOW HUB SHROUD FLUID
+ic_hex_undo_major_end split_grid
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_undo_major_start split_grid
+ic_hex_split_grid 70 74 0.54827 m GEOM P1 P2 DUCT_FLOW FAN_FLOW HUB SHROUD FLUID
+ic_hex_undo_major_end split_grid
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_undo_major_start split_grid
+ic_hex_split_grid 26 42 0.443169 m GEOM P1 P2 DUCT_FLOW FAN_FLOW HUB SHROUD FLUID
+ic_hex_undo_major_end split_grid
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_mark_blocks unmark
+ic_hex_mark_blocks superblock 27
+ic_hex_change_element_id VORFN
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_mark_blocks unmark
+ic_hex_mark_blocks superblock 32
+ic_hex_change_element_id VORFN
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_undo_major_start merge_blocks
+ic_hex_merge_blocks 13 30 -version 51
+ic_hex_undo_major_end merge_blocks
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_collapse_edge 111 69 join keep_first -version 101 fix_first
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_collapse_edge 111 70 join keep_first -version 101 fix_first
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_collapse_edge 106 37 join keep_first -version 101 fix_first
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_collapse_edge 106 21 join keep_first -version 101 fix_first
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_undo_major_start merge_blocks
+ic_hex_merge_blocks 37 13 -version 51
+ic_hex_undo_major_end merge_blocks
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_undo_major_start convert_degen_to_yblock
+ic_hex_convert_degen_to_yblock 13
+ic_hex_undo_major_end convert_degen_to_yblock
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_collapse_edge 112 148 join keep_first -version 101 fix_first
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_collapse_edge 107 146 join keep_first -version 101 fix_first
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_delete_geometry surface names srf.02.8 0
+ic_undo_group_end
+ic_undo_group_begin
+ic_delete_geometry surface names srf.02.7 0
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_point crv_par GEOM pnt.22 {srf.02e14 0.5}
+ic_undo_group_end
+ic_undo_group_begin
+ic_point crv_par GEOM pnt.23 {srf.02e13 0.5}
+ic_undo_group_end
+ic_undo_group_begin
+ic_point crv_par GEOM pnt.24 {srf.02.6e38 0.5}
+ic_undo_group_end
+ic_undo_group_begin
+ic_point crv_par GEOM pnt.25 {srf.02.6e36 0.5}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_delete_geometry curve names crv.29 0
+ic_curve point GEOM crv.29 {GEOM.39 pnt.22}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_project_curve_to_surface crv.29 srf.02 crv.30 GEOM 0 0
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_point intersect GEOM pnt.26 {crv.23 crv.30} tol 0.1
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.29
+ic_delete_geometry curve names crv.29 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_curve split GEOM crv.31 {crv.30 pnt.26}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve split GEOM crv.32 {crv.23 pnt.26}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.30
+ic_delete_geometry curve names crv.30 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_delete_geometry curve names crv.33 0
+ic_curve point GEOM crv.33 {GEOM.41 pnt.23}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_project_curve_to_surface crv.33 srf.02 crv.34 GEOM 0 0
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.33
+ic_delete_geometry curve names crv.33 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_curve split GEOM crv.35 {crv.34 pnt.26}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.35
+ic_delete_geometry curve names crv.35 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.32
+ic_delete_geometry curve names crv.32 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_delete_geometry curve names crv.36 0
+ic_curve point GEOM crv.36 {GEOM.58 pnt.24}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_point intersect GEOM pnt.27 {crv.01 crv.36} tol 0.1
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_curve split GEOM crv.37 {crv.01 pnt.27}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve split GEOM crv.38 {crv.36 pnt.27}
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.01
+ic_geo_incident curve crv.36
+ic_delete_geometry curve names {crv.01 crv.36} 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_delete_geometry curve names crv.39 0
+ic_curve point GEOM crv.39 {pnt.27 pnt.25}
+ic_undo_group_end
+ic_undo_group_begin
+ic_delete_geometry curve names crv.40 0
+ic_curve point GEOM crv.40 {pnt.26 pnt.27}
+ic_undo_group_end
+ic_undo_group_begin
+ic_delete_geometry curve names crv.41 0
+ic_curve point GEOM crv.41 {pnt.22 pnt.24}
+ic_undo_group_end
+ic_undo_group_begin
+ic_delete_geometry curve names crv.42 0
+ic_curve point GEOM crv.42 {pnt.23 pnt.25}
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 26 GEOM.49
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 118 GEOM.21
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 42 GEOM.46
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 74 GEOM.50
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 113 GEOM.32
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 73 GEOM.53
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 93 GEOM.45
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 117 GEOM.22
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 94 GEOM.42
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 90 GEOM.39
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 112 GEOM.24
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 89 GEOM.41
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 150 GEOM.40
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 152 pnt.23
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 147 pnt.26
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 144 pnt.22
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 41 GEOM.54
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 108 GEOM.31
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 25 GEOM.57
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 85 GEOM.61
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 143 pnt.24
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 149 GEOM.62
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 145 pnt.27
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 151 pnt.25
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 86 GEOM.58
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_move_node 107 GEOM.36
+ic_undo_group_end
+ic_hex_find_comp_curve crv.02
+ic_undo_group_begin
+ic_hex_set_edge_projection 108 113 0 1 crv.02
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.4e30
+ic_undo_group_begin
+ic_hex_set_edge_projection 25 73 0 1 srf.02.4e30
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.4e28
+ic_undo_group_begin
+ic_hex_set_edge_projection 41 74 0 1 srf.02.4e28
+ic_undo_group_end
+ic_hex_find_comp_curve crv.25
+ic_undo_group_begin
+ic_hex_set_edge_projection 107 112 0 1 crv.25
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.7e41
+ic_undo_group_begin
+ic_hex_set_edge_projection 85 89 0 1 srf.02.7e41
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.7e39
+ic_undo_group_begin
+ic_hex_set_edge_projection 86 90 0 1 srf.02.7e39
+ic_undo_group_end
+ic_hex_find_comp_curve crv.40
+ic_undo_group_begin
+ic_hex_set_edge_projection 145 147 0 1 crv.40
+ic_undo_group_end
+ic_hex_find_comp_curve crv.41
+ic_undo_group_begin
+ic_hex_set_edge_projection 143 144 0 1 crv.41
+ic_undo_group_end
+ic_hex_find_comp_curve crv.42
+ic_undo_group_begin
+ic_hex_set_edge_projection 151 152 0 1 crv.42
+ic_undo_group_end
+ic_hex_find_comp_curve crv.00
+ic_undo_group_begin
+ic_hex_set_edge_projection 149 150 0 1 crv.00
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.3e24
+ic_undo_group_begin
+ic_hex_set_edge_projection 74 42 0 1 srf.02.3e24
+ic_undo_group_end
+ic_hex_find_comp_curve crv.26
+ic_undo_group_begin
+ic_hex_set_edge_projection 113 118 0 1 crv.26
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.3e26
+ic_undo_group_begin
+ic_hex_set_edge_projection 73 26 0 1 srf.02.3e26
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.2e22
+ic_undo_group_begin
+ic_hex_set_edge_projection 93 26 0 1 srf.02.2e22
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.8e45
+ic_undo_group_begin
+ic_hex_set_edge_projection 89 73 0 1 srf.02.8e45
+ic_undo_group_end
+ic_hex_find_comp_curve crv.03
+ic_undo_group_begin
+ic_hex_set_edge_projection 117 118 0 1 crv.03
+ic_undo_group_end
+ic_hex_find_comp_curve crv.24
+ic_undo_group_begin
+ic_hex_set_edge_projection 112 113 0 1 crv.24
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.2e20
+ic_undo_group_begin
+ic_hex_set_edge_projection 94 42 0 1 srf.02.2e20
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.8e43
+ic_undo_group_begin
+ic_hex_set_edge_projection 90 74 0 1 srf.02.8e43
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.5e34
+ic_undo_group_begin
+ic_hex_set_edge_projection 85 25 0 1 srf.02.5e34
+ic_undo_group_end
+ic_hex_find_comp_curve crv.27
+ic_undo_group_begin
+ic_hex_set_edge_projection 107 108 0 1 crv.27
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.5e32
+ic_undo_group_begin
+ic_hex_set_edge_projection 86 41 0 1 srf.02.5e32
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.1e18
+ic_undo_group_begin
+ic_hex_set_edge_projection 89 93 0 1 srf.02.1e18
+ic_undo_group_end
+ic_hex_find_comp_curve crv.04
+ic_undo_group_begin
+ic_hex_set_edge_projection 112 117 0 1 crv.04
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.1e16
+ic_undo_group_begin
+ic_hex_set_edge_projection 90 94 0 1 srf.02.1e16
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02e14
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_curve split GEOM crv.43 {srf.02e14 pnt.22}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve split GEOM crv.44 {srf.02e13 pnt.23}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve split GEOM crv.45 {srf.02.6e36 pnt.25}
+ic_undo_group_end
+ic_undo_group_begin
+ic_curve split GEOM crv.46 {srf.02.6e38 pnt.24}
+ic_undo_group_end
+ic_hex_find_comp_curve crv.43
+ic_undo_group_begin
+ic_hex_set_edge_projection 144 89 0 1 crv.43
+ic_undo_group_end
+ic_hex_find_comp_curve crv.23
+ic_undo_group_begin
+ic_hex_set_edge_projection 147 112 0 1 crv.23
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02e13
+ic_undo_group_begin
+ic_hex_set_edge_projection 152 90 0 1 srf.02e13
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02e14
+ic_undo_group_begin
+ic_hex_set_edge_projection 150 144 0 1 srf.02e14
+ic_undo_group_end
+ic_hex_find_comp_curve crv.44
+ic_undo_group_begin
+ic_hex_set_edge_projection 152 150 0 1 crv.44
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.6e38
+ic_undo_group_begin
+ic_hex_set_edge_projection 143 85 0 1 srf.02.6e38
+ic_undo_group_end
+ic_hex_find_comp_curve crv.37
+ic_undo_group_begin
+ic_hex_set_edge_projection 145 107 0 1 crv.37
+ic_undo_group_end
+ic_hex_find_comp_curve crv.45
+ic_undo_group_begin
+ic_hex_set_edge_projection 151 86 0 1 crv.45
+ic_undo_group_end
+ic_hex_find_comp_curve crv.46
+ic_undo_group_begin
+ic_hex_set_edge_projection 149 143 0 1 crv.46
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.6e36
+ic_undo_group_begin
+ic_hex_set_edge_projection 151 149 0 1 srf.02.6e36
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.5e35.2
+ic_undo_group_begin
+ic_hex_set_edge_projection 107 85 0 1 srf.02.5e35.2
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.5e35.3
+ic_undo_group_begin
+ic_hex_set_edge_projection 86 107 0 1 srf.02.5e35.3
+ic_undo_group_end
+ic_hex_find_comp_curve crv.38
+ic_undo_group_begin
+ic_hex_set_edge_projection 145 143 0 1 crv.38
+ic_undo_group_end
+ic_hex_find_comp_curve crv.39
+ic_undo_group_begin
+ic_hex_set_edge_projection 151 145 0 1 crv.39
+ic_undo_group_end
+ic_hex_find_comp_curve crv.31
+ic_undo_group_begin
+ic_hex_set_edge_projection 147 144 0 1 crv.31
+ic_undo_group_end
+ic_hex_find_comp_curve crv.34
+ic_undo_group_begin
+ic_hex_set_edge_projection 152 147 0 1 crv.34
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.8e46.2
+ic_undo_group_begin
+ic_hex_set_edge_projection 112 89 0 1 srf.02.8e46.2
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.8e46.3
+ic_undo_group_begin
+ic_hex_set_edge_projection 90 112 0 1 srf.02.8e46.3
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.1e18
+ic_undo_group_begin
+ic_hex_set_edge_projection 89 93 0 1 srf.02.1e18
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.1e19.2
+ic_undo_group_begin
+ic_hex_set_edge_projection 117 93 0 1 srf.02.1e19.2
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.1e19.3
+ic_undo_group_begin
+ic_hex_set_edge_projection 94 117 0 1 srf.02.1e19.3
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.2e23.2
+ic_undo_group_begin
+ic_hex_set_edge_projection 118 26 0 1 srf.02.2e23.2
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.2e23.3
+ic_undo_group_begin
+ic_hex_set_edge_projection 42 118 0 1 srf.02.2e23.3
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.3e27.2
+ic_undo_group_begin
+ic_hex_set_edge_projection 113 73 0 1 srf.02.3e27.2
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.3e27.3
+ic_undo_group_begin
+ic_hex_set_edge_projection 74 113 0 1 srf.02.3e27.3
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.4e31.2
+ic_undo_group_begin
+ic_hex_set_edge_projection 108 25 0 1 srf.02.4e31.2
+ic_undo_group_end
+ic_hex_find_comp_curve srf.02.4e31.3
+ic_undo_group_begin
+ic_hex_set_edge_projection 41 108 0 1 srf.02.4e31.3
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_set_mesh 41 108 n [expr $N_Azimuthal/2] h1rel 0.0 h2rel 0.0 r1 2 r2 2 lmax 0 default copy_to_parallel unlocked
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_set_mesh 118 26 n [expr $N_Azimuthal/2] h1rel 0.0 h2rel 0.0 r1 1 r2 1 lmax 0 default copy_to_parallel unlocked
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.34
+ic_delete_geometry curve names crv.34 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_delete_geometry curve names crv.01 0
+ic_curve point GEOM crv.01 {pnt.26 pnt.23}
+ic_undo_group_end
+ic_set_global geo_cad 0.003 toler
+ic_undo_group_begin
+ic_geo_project_curve_to_surface crv.01 srf.02 crv.05 HUB 0 0
+ic_undo_group_end
+ic_undo_group_begin
+ic_geo_incident curve crv.01
+ic_delete_geometry curve names crv.01 0 1
+ic_set_dormant_pickable curve 0 {}
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_set_edge_projection 152 147 0 3 0
+ic_undo_group_end
+ic_hex_find_comp_curve crv.05
+ic_undo_group_begin
+ic_hex_set_edge_projection 152 147 0 1 crv.05
+ic_undo_group_end
+ic_hex_create_mesh GEOM P1 P2 DUCT_FLOW FAN_FLOW HUB SHROUD FLUID proj 2 dim_to_mesh 3
+ic_undo_group_begin
+ic_hex_set_mesh 152 90 n 50 h1rel linked 152 150 h2rel 0.0 r1 2 r2 2 lmax 0 default copy_to_parallel locked
+ic_undo_group_begin
+ic_undo_group_end
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_set_mesh 90 94 n 50 h1rel linked 152 90 h2rel 0.0 r1 2 r2 2 lmax 0 default copy_to_parallel locked
+ic_undo_group_begin
+ic_undo_group_end
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_set_mesh 117 118 n 49 h1rel 0.0032 h2rel 0.0032 r1 1.14 r2 1.14 lmax 0 default copy_to_parallel unlocked
+ic_undo_group_begin
+ic_undo_group_end
+ic_undo_group_end
+ic_undo_group_begin
+ic_hex_set_mesh 41 74 n 101 h1rel linked 74 42 h2rel linked 74 42 r1 1.14 r2 1.14 lmax 0 default copy_to_parallel locked
+ic_undo_group_begin
+ic_undo_group_end
+ic_undo_group_end
+ic_hex_create_mesh GEOM P1 P2 DUCT_FLOW FAN_FLOW HUB SHROUD FLUID proj 2 dim_to_mesh 3
+ic_hex_write_file PYTHON_PATH GEOM P1 P2 DUCT_FLOW FAN_FLOW HUB SHROUD FLUID proj 2 dim_to_mesh 3 no_boco
+ic_uns_load PYTHON_PATH 3 0 {} 1
+ic_uns_update_family_type visible {FLUID FAN_FLOW GEOM SHROUD P1 ORFN P2 HUB DUCT_FLOW} {!NODE !LINE_2 QUAD_4 !HEXA_8} update 0
+ic_boco_solver 
+ic_boco_clear_icons 
+ic_undo_group_begin 
+ic_boco_solver {ANSYS CFX}
+ic_solver_mesh_info {ANSYS CFX}
+ic_undo_group_end 
+ic_boco_solver 
+ic_boco_solver {ANSYS CFX}
+ic_solution_set_solver {ANSYS CFX} 1
+ic_boco_save PYTHON_PATH
+ic_boco_save_atr PYTHON_PATH
+ic_chdir PYTHON_PATH
+ic_save_tetin PYTHON_NAME.tin 0 0 {} {} 0 0 1
+ic_uns_check_duplicate_numbers 
+ic_save_unstruct PYTHON_NAME.uns 1 {} {} {}
+ic_uns_set_modified 1
+ic_hex_save_blocking PYTHON_NAME.blk
+ic_boco_solver 
+ic_boco_solver {ANSYS CFX}
+ic_solution_set_solver {ANSYS CFX} 1
+ic_boco_save PYTHON_NAME.fbc
+ic_boco_save_atr PYTHON_NAME.atr
+ic_save_project_file PYTHON_PATH {array\ set\ file_name\ \{ {    catia_dir .} {    parts_dir .} {    domain_loaded 0} {    cart_file_loaded 0} {    cart_file {}} {    domain_saved PYTHON_NAME.uns} {    archive {}} {    med_replay {}} {    topology_dir .} {    ugparts_dir .} {    icons {{$env(ICEM_ACN)/lib/ai_env/icons} {$env(ICEM_ACN)/lib/va/EZCAD/icons} {$env(ICEM_ACN)/lib/icons} {$env(ICEM_ACN)/lib/va/CABIN/icons}}} {    tetin PYTHON_NAME.tin} {    family_boco PYTHON_NAME.fbc} {    iges_dir .} {    solver_params_loaded 0} {    attributes_loaded 0} {    project_lock {}} {    attributes PYTHON_NAME.atr} {    domain PYTHON_NAME.uns} {    domains_dir .} {    settings_loaded 0} {    settings PYTHON_NAME.prj} {    blocking PYTHON_NAME.blk} {    hexa_replay {}} {    transfer_dir .} {    mesh_dir .} {    family_topo {}} {    gemsparts_dir .} {    family_boco_loaded 0} {    tetin_loaded 0} {    project_dir .} {    topo_mulcad_out {}} {    solver_params {}} \} array\ set\ options\ \{ {    expert 1} {    remote_path {}} {    tree_disp_quad 2} {    tree_disp_pyra 0} {    evaluate_diagnostic 0} {    histo_show_default 1} {    select_toggle_corners 0} {    remove_all 0} {    keep_existing_file_names 0} {    record_journal 0} {    edit_wait 0} {    face_mode 1} {    select_mode all} {    med_save_emergency_tetin 1} {    user_name RD_Simulation} {    diag_which all} {    uns_warn_if_display 500000} {    bubble_delay 1000} {    external_num 1} {    tree_disp_tri 2} {    apply_all 0} {    default_solver {ANSYS Fluent}} {    temporary_directory {}} {    flood_select_angle 0} {    home_after_load 1} {    project_active 0} {    histo_color_by_quality_default 1} {    undo_logging 1} {    tree_disp_hexa 0} {    histo_solid_default 1} {    host_name RD_Simulation} {    xhidden_full 1} {    replay_internal_editor 1} {    editor {}} {    mouse_color orange} {    clear_undo 1} {    remote_acn {}} {    remote_sh csh} {    tree_disp_penta 0} {    n_processors 1} {    remote_host {}} {    save_to_new 0} {    quality_info Quality} {    tree_disp_node 0} {    med_save_emergency_mesh 1} {    redtext_color red} {    tree_disp_line 0} {    select_edge_mode 0} {    use_dlremote 0} {    max_mesh_map_size 1024} {    show_tris 1} {    remote_user {}} {    enable_idle 0} {    auto_save_views 1} {    max_cad_map_size 512} {    display_origin 0} {    uns_warn_user_if_display 1000000} {    detail_info 0} {    win_java_help 0} {    show_factor 1} {    boundary_mode all} {    clean_up_tmp_files 1} {    auto_fix_uncovered_faces 1} {    med_save_emergency_blocking 1} {    max_binary_tetin 0} {    tree_disp_tetra 0} \} array\ set\ disp_options\ \{ {    uns_dualmesh 0} {    uns_warn_if_display 500000} {    uns_normals_colored 0} {    uns_icons 0} {    uns_locked_elements 0} {    uns_shrink_npos 0} {    uns_node_type None} {    uns_icons_normals_vol 0} {    uns_bcfield 0} {    backup Wire} {    uns_nodes 0} {    uns_only_edges 0} {    uns_surf_bounds 0} {    uns_wide_lines 0} {    uns_vol_bounds 0} {    uns_displ_orient Triad} {    uns_orientation 0} {    uns_directions 0} {    uns_thickness 0} {    uns_shell_diagnostic 0} {    uns_normals 0} {    uns_couplings 0} {    uns_periodicity 0} {    uns_single_surfaces 0} {    uns_midside_nodes 1} {    uns_shrink 100} {    uns_multiple_surfaces 0} {    uns_no_inner 0} {    uns_enums 0} {    uns_disp Wire} {    uns_bcfield_name {}} {    uns_color_by_quality 0} {    uns_changes 0} {    uns_cut_delay_count 1000} \} {set icon_size1 24} {set icon_size2 35} {set thickness_defined 0} {set solver_type 1} {set solver_setup -1} array\ set\ prism_values\ \{ {    n_triangle_smoothing_steps 5} {    min_smoothing_steps 6} {    first_layer_smoothing_steps 1} {    new_volume {}} {    height {}} {    prism_height_limit {}} {    interpolate_heights 0} {    n_tetra_smoothing_steps 10} {    do_checks {}} {    delete_standalone 1} {    ortho_weight 0.50} {    max_aspect_ratio {}} {    ratio_max {}} {    incremental_write 0} {    total_height {}} {    use_prism_v10 0} {    intermediate_write 1} {    delete_base_triangles {}} {    ratio_multiplier {}} {    verbosity_level 1} {    refine_prism_boundary 1} {    max_size_ratio {}} {    triangle_quality {}} {    max_prism_angle 180} {    tetra_smooth_limit 0.3} {    max_jump_factor 5} {    use_existing_quad_layers 0} {    layers 3} {    fillet 0.10} {    into_orphan 0} {    init_dir_from_prev {}} {    blayer_2d 0} {    do_not_allow_sticking {}} {    top_family {}} {    law exponential} {    min_smoothing_val 0.1} {    auto_reduction 0} {    stop_columns 1} {    stair_step 1} {    smoothing_steps 12} {    side_family {}} {    min_prism_quality 0.01} {    ratio 1.2} \} {set aie_current_flavor {}} array\ set\ vid_options\ \{ {    wb_import_tritol 0.001} {    wb_import_mix_res_line 0} {    wb_import_cad_att_pre {SDFEA;DDM}} {    wb_import_surface_bodies 1} {    wb_NS_to_subset 0} {    wb_import_mat_points 0} {    auxiliary 0} {    wb_import_mix_res_surface 0} {    wb_import_mix_res -1} {    wb_import_cad_att_trans 1} {    show_name 0} {    wb_import_delete_solids 0} {    wb_import_solid_bodies 1} {    wb_import_save_pmdb {}} {    wb_import_mix_res_solid 0} {    inherit 1} {    default_part GEOM} {    new_srf_topo 1} {    wb_import_associativity_model_name {}} {    DelPerFlag 0} {    wb_import_analysis_type 3} {    wb_import_save_partfile 0} {    wb_import_line_bodies 0} {    show_item_name 0} {    composite_tolerance 1.0} {    wb_run_mesher tetra} {    wb_import_en_sym_proc 1} {    wb_NS_to_entity_parts 0} {    wb_import_reference_key 0} {    wb_import_work_points 0} {    wb_import_sel_proc 0} {    wb_NS_only 0} {    wb_import_pluginname {}} {    wb_import_mix_res_point 0} {    wb_import_refresh_pmdb 0} {    wb_import_create_solids 0} {    wb_import_load_pmdb {}} {    wb_import_scale_geo Default} {    wb_import_sel_pre {}} {    wb_import_lcs 0} {    replace 0} {    wb_import_cad_associativity 0} {    wb_import_transfer_file_scale 1.0} {    same_pnt_tol 1e-4} {    tdv_axes 1} {    vid_mode 0} {    DelBlkPerFlag 0} \} {set savedTreeVisibility {geomNode 1 geom_subsetNode 0 geomPointNode 2 geomCurveNode 0 geomSurfNode 0 meshNode 1 mesh_subsetNode 2 meshPointNode 0 meshLineNode 0 meshShellNode 2 meshQuadNode 2 meshVolumeNode 0 meshHexaNode 0 blockingNode 1 block_subsetNode 2 block_vertNode 0 block_edgeNode 2 block_faceNode 0 block_blockNode 0 block_meshNode 0 topoNode 2 topo-root 2 partNode 2 part-DUCT_FLOW 2 part-FAN_FLOW 2 part-FLUID 2 part-GEOM 2 part-HUB 2 part-P1 2 part-P2 2 part-SHROUD 2 part-VORFN 0}} {set last_view {rot {-0.0180483844056 0.191135347166 0.0432099011512 0.980446040992} scale {409.98230576 409.98230576 409.98230576} center {0 0 0} pos {-506.426687209 -79.855120974 0}}} array\ set\ cut_info\ \{ {    active 0} \} array\ set\ hex_option\ \{ {    default_bunching_ratio 2.0} {    floating_grid 0} {    project_to_topo 0} {    n_tetra_smoothing_steps 20} {    sketching_mode 0} {    trfDeg 1} {    wr_hexa7 0} {    smooth_ogrid 0} {    find_worst 1-3} {    hexa_verbose_mode 0} {    old_eparams 0} {    uns_face_mesh_method uniform_quad} {    multigrid_level 0} {    uns_face_mesh one_tri} {    check_blck 0} {    proj_limit 0} {    check_inv 0} {    project_bspline 0} {    hexa_update_mode 1} {    default_bunching_law BiGeometric} {    worse_criterion Quality} \} array\ set\ saved_views\ \{ {    views {}} \}} {ICEM CFD}
+ic_exec {C:/Program Files/ANSYS Inc/v201/icemcfd/win64_amd/icemcfd/output-interfaces/cfx5} -dom PYTHON_NAME.uns -b PYTHON_NAME.fbc -ascii -db -internal_faces PYTHON_PATH
